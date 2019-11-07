@@ -4,32 +4,24 @@
 
 
     <div class="container">
-        <div class="d-flex justify-content-center">
-            <div class="card">
-                <div class="card-header">
-                    <h3>ورود</h3>
+
+        <h1>ورود</h1>
+        <hr>
+        <form method="post" action="/login" id="login_form">
+
+            {% if message != 'nothing' %}
+                <div class="alert alert-danger" id="error" role="alert">
+                    {{ message }}
                 </div>
+            {% endif %}
 
-                <div class="card-body">
+            {% csrf_token %}
 
-                    <form method="post" action="/login" id="login_form">
-
-                        {% if message != 'nothing' %}
-                            <div class="alert alert-danger" id="error" role="alert">
-                                {{ message }}
-                            </div>
-                        {% endif %}
-
-                        {% csrf_token %}
-
-                        {{ form.as_p }}
+            {{ form.as_table }}
 
 
-                        <input type="submit" value="ورود" class="btn float-right login_btn">
-                    </form>
-                </div>
-            </div>
-        </div>
+            <input type="submit" value="ورود" class="btn float-right btn-primary">
+
     </div>
 
 {% endblock %}

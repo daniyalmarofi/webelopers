@@ -9,24 +9,34 @@
             <h1>ثبت نام</h1>
             <hr>
 
-            {% if message != 'nothing' %}
+            {% if message %}
+                    <div class="alert alert-danger" role="alert">
 
-                <div class="alert alert-danger" role="alert">
-
-                    {{ message }}
-
-                </div>
+                {% if 'username' in message %}
 
 
+                        نام کاربری شما در سیستم موجود است
+
+                {% endif %}
+<br>
+                {% if 'password' in message %}
+
+                    گذرواژه و تکرار گذرواژه یکسان نیستند
+
+
+                {% endif %}
+</div>
             {% endif %}
 
-            {#            {{ form.as_table }}#}
+
+
+
             <label for="firstname"><b>First name</b></label>
             <br>
-            <input type="text" placeholder="Enter Firstname" name="firstname" required>
+            <input type="text" placeholder="Enter Firstname" name="first_name">
             <label for="lastname"><b>Last name</b></label>
             <br>
-            <input type="text" placeholder="Enter Lastname" name="lastname" required>
+            <input type="text" placeholder="Enter Lastname" name="last_name">
             <label for="username"><b>Username</b></label>
             <br>
             <input type="text" placeholder="Enter Username" name="username" required>
@@ -39,10 +49,10 @@
             <input type="password" placeholder="Repeat Password" name="password2" required>
 
             <br>
-            <div class="clearfix">
-                <button type="button" class="cancelbtn">لغو</button>
-                <button type="submit" class="signupbtn">ثبت نام</button>
-            </div>
+            <button type="submit" class="signupbtn">ثبت نام</button>
+            <br>
+            <br>
+            <br>
         </div>
     </form>
 

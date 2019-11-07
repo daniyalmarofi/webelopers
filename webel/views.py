@@ -29,21 +29,27 @@ def index(request):
 
 
 def signup(request):
-    message = "nothing"
+    message = []
 
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('/')
         else:
+
+            if 'match' in form.errors:
+                message.append('password')
+
+            if 'username' in form.errors:
+                message.append('username')
+
             print(form.errors)
-            message = form.errors
+            print(message)
     else:
         form = SignUpForm()
     return render(request, 'b_register.html', {'form': form, 'message': message})

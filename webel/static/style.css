@@ -151,3 +151,9 @@ button:hover {
         width: 100%;
     }
 }
+.footer-copyright{
+    clear: both;
+    float: right;
+    height: 50px;
+    width: 100%;
+}
