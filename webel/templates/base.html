@@ -5,158 +5,11 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
 <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
-<title>CodePen - Semantic UI Navbar Example</title>
+<title>seDa EDU</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.css'>
-<style>
-  body {
-  min-height: 2000px;
-}
-body > .ui.container {
-  margin-top: 6em;
-}
-.offices {
-  color: #fff;
-}
-.flags a {
-  padding: .012em;
-}
-/* Nav */
-.ui.fixed.borderless.menu {
-  background-color: #4a008a;
-}
 
-.ui .computer.only .item {
-  color: #fff;
-}
-
-.ui .computer.only .item:hover {
-  background: #6311aa !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-
-.ui .computer .item.active {
-  background: #00ba49;
-  color: #fff;
-  border-bottom: 1px solid #fff;
-}
-
-.ui.dropdown.item .menu {
-  background-color: #4a008a !important;
-}
-.ui.menu .ui.dropdown .menu > .item {
-  color: #fff !important;
-}
-.ui.menu .ui.dropdown .menu > .item.active {
-  background-color: #00ba49 !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-.ui.menu .ui.dropdown .menu > .item:hover {
-  background-color: #6311aa !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-
-.ui.fixed.borderless.menu .row > a.header.item {
-  font-size: 1.2em;
-}
-
-/* Mobile */
-.tablet.mobile.only .header, .ui.icon.button > .icon {
-  color: #fff;
-}
-
-.tablet.mobile.only .header:hover {
-  background-color: #6311aa !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-
-.ui.basic.button:hover {
-   background: #6311aa !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-
-.ui.vertical.menu {
-  display: none;
-  border: none;
-  box-shadow: none;
-  background-color: #4a008a;
-}
-.ui.vertical.menu > .item {
-  padding-left: 1.428em;
-  color: #fff;
-}
-
-.ui.vertical.menu > .item.active {
-  padding-left: 1.428em;
-  background-color: #00ba49 !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-
-.ui.vertical.menu > .item:hover {
-  padding-left: 1.428em;
-  background-color: #6311aa !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-.ui.vertical.menu .item .title {
-  color: #fff;
-}
-.ui.vertical.menu .item .title .dropdown.icon {
-  float: none;
-  color: #fff;
-}
-
-.ui.vertical.menu .item .content .item {
-  padding: 0.5em 1em;
-  color: #fff;
-}
-
-.ui.vertical.menu .item .content .item:hover {
-  padding: 0.5em 1em;
-  background-color: #4a008a !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-
-.ui.vertical.menu .item .content .item.active {
-  padding: 0.5em 1em;
-  background-color: #00ba49 !important;
-  color: #fff !important;
-  border-bottom: 1px solid #fff;
-}
-
-.ui.vertical.menu .header.item {
-  text-transform: uppercase;
-  color: #fff;
-}
-/* Nav */
-
-.ui.message {
-  background-color: rga(238, 238, 238);
-  box-shadow: none;
-  padding: 5em 4em;
-}
-.ui.message h1.ui.header {
-  font-size: 4.5em;
-  color: #4A008A;
-}
-.ui.message p.lead {
-  font-size: 1.3em;
-  color: #333333;
-  line-height: 1.4;
-  font-weight: 300;
-}
-
-.ui.purple.button {
-  background-color: #4A008A;
-}
-</style>
-<script>
+    <script>
   window.console = window.console || function(t) {};
 </script>
 <script>
@@ -170,7 +23,7 @@ body > .ui.container {
 <div class="ui fixed borderless huge menu">
 <div class="ui container grid">
 
-<div class="computer only row" id="navbar">
+<div class="computer only row">
 
 
 <a class="header item">seDa EDU</a>
@@ -318,29 +171,6 @@ To see the difference between static and fixed top navbars, just scroll.
 <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.js'></script>
-<script id="rendered-js">
-      $(document).ready(function () {
-  $('.computer.only .dropdown.item').
-  popup({
-    inline: true,
-    hoverable: true,
-    position: 'bottom left',
-    delay: {
-      show: 300,
-      hide: 800 } });
-
-
-
-  $('.ui.dropdown').dropdown();
-  $('.ui.accordion').accordion();
-
-  // bind "hide and show vertical menu" event to top right icon button
-  $('.ui.toggle.button').click(function () {
-    $('.ui.vertical.menu').toggle("250", "linear");
-  });
-});
-      //# sourceURL=pen.js
-    </script>
 </body>
 </html>
 
