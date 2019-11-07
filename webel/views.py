@@ -28,7 +28,7 @@ def signup(request):
             login(request, user)
             return redirect('home')
         else:
-            print(form.error_messages)
+            print(form.errors)
     else:
         form = SignUpForm()
     return render(request, 'b_register.html', {'form': form})
