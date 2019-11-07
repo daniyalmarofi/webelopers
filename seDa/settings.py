@@ -25,6 +25,8 @@ SECRET_KEY = '+58tj24+6et&f6s*#a5ebxg&w730_a5c7um%(amfz$#4&g&!pb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+STATIC_URL = '/static/'
+
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webel',
 ]
 
 MIDDLEWARE = [
