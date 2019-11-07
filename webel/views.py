@@ -34,6 +34,7 @@ def signup(request):
     return render(request, 'b_register.html', {'form': form})
 
 
+
 def loginReq(request):
     return render(request, 'b_login.html')
 
