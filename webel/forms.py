@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, forms, Textarea
 
 from webel.models import Contact
 
@@ -9,7 +9,7 @@ class ContactForm(ModelForm):
         fields = ['title', 'email', 'text']
         widgets = {'title': TextInput(attrs={'name': 'title', 'placeholder': 'عنوان'}),
                    'email': TextInput(attrs={'name': 'email', 'placeholder': 'ایمیل شما'}),
-                   'text': TextInput(attrs={'name': 'text', 'placeholder': 'پیام'})
+                   'text': Textarea(attrs={'name': 'text', 'placeholder': 'پیام'}),
                    }
 
 from django import forms
