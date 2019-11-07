@@ -11,14 +11,19 @@
                 </div>
 
                 <div class="card-body">
+
+                         {% if message != 'nothing' %}
+                <div class="alert alert-danger" role="alert">
+
+                            {{ message }}
+                </div>
+                        {% endif %}
+
+
+
                     <form method="post" action="/login" id="login_form">
 
                         {% csrf_token %}
-     {% if message != 'nothing' %}
-
-                            {{ message }}
-
-                        {% endif %}
 
                                           {{ form.as_p }}
 
