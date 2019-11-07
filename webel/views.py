@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from webel.forms import SignUpForm
 
-
 from webel.forms import ContactForm
 
 
@@ -15,8 +14,6 @@ def index(request):
 
 def sign_up(request):
     return render(request, 'b_register.html')
-
-
 
 
 def signup(request):
@@ -37,13 +34,20 @@ def signup(request):
     return render(request, 'b_register.html', {'form': form})
 
 
-def login(request):
-
 def loginReq(request):
     return render(request, 'b_login.html')
 
 
 def contact(request):
-    form = ContactForm()
+    sent = "nok"
 
-    return render(request, 'contact.html', {'form': form})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            sent = "ok"
+            # return HttpResponseRedirect('/thanks/')
+        else:
+            form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form, 'sent': sent})
