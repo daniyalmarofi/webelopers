@@ -39,6 +39,15 @@ def loginReq(request):
 
 
 def contact(request):
-    form = ContactForm()
+    sent = "nok"
 
-    return render(request, 'contact.html', {'form': form})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            sent = "ok"
+            # return HttpResponseRedirect('/thanks/')
+        else:
+            form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form, 'sent': sent})
