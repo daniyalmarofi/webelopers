@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'^signup/$', core_views.signup, name='signup'),
 
+    url('',include())
 ]
