@@ -115,4 +115,7 @@ def profile(request):
                'first_name': user.first_name,
                'last_name': user.last_name}
 
-    return render(request, 'profile.html',{'profile':profile})
+    return render(request, 'profile.html', {'profile': profile})
+
+def panel(request):
+    return render(request,'panel.html')
