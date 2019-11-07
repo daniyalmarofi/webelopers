@@ -22,3 +22,4 @@ urlpatterns = [
 
     url('',include())
 ]
+
