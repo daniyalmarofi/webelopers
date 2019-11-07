@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
@@ -68,11 +68,20 @@ def login_view(request):
             else:
                 message = 'invalid'
         else:
-            message='notvalid'
+            message = 'notvalid'
     else:
         form = LoginForm()
 
     return render(request, 'b_login.html', {'form': form, 'message': message})
+
+
+def logout_view(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('/')
+
+    else:
+        return redirect('/login')
 
 
 def contact(request):
