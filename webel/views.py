@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -45,7 +46,15 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+
+            subject = form.cleaned_data['title']
+            message = form.cleaned_data['text']
+            sender = form.cleaned_data['email']
+
+            recipients = ['webe19lopers@gmail.com']
+            send_mail(subject, message, sender, recipients)
             sent = True
+
             # return HttpResponseRedirect('/thanks/')
     else:
         form = ContactForm()
