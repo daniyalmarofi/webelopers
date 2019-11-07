@@ -10,7 +10,7 @@ def index(request):
 
 
 def sign_up(request):
-    return render(request, 'signup.html')
+    return render(request, 'b_register.html')
 
 
 def signup(request):
