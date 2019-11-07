@@ -28,10 +28,6 @@ def index(request):
     return render(request, 'base.html')
 
 
-def sign_up(request):
-    return render(request, 'b_register.html')
-
-
 def signup(request):
     message = "nothing"
 
