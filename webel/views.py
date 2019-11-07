@@ -1,6 +1,22 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
+import pip
+
+
+def daninstall(package):
+    if hasattr(pip, 'main'):
+        pip.main(['install', package])
+    else:
+        pip._internal.main(['install', package])
+
+
+try:
+    import requests
+except:
+    daninstall(requests)
+    import requests
 
 # Create your views here.
 from webel.forms import SignUpForm
@@ -17,6 +33,9 @@ def sign_up(request):
 
 
 def signup(request):
+
+    message="nothing"
+
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         print(request.POST)
@@ -29,9 +48,10 @@ def signup(request):
             return redirect('home')
         else:
             print(form.errors)
+            message=form.errors
     else:
         form = SignUpForm()
-    return render(request, 'b_register.html', {'form': form})
+    return render(request, 'b_register.html', {'form': form,'message':message})
 
 
 
@@ -46,7 +66,21 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+
+            subject = form.cleaned_data['title']
+            message = form.cleaned_data['text']
+
+            daniurl = "https://azmabepors.com/action/webel"
+
+            postdata = {
+                'title': subject,
+                'text': message
+            }
+
+            r = requests.post(daniurl, data=postdata)
+
             sent = True
+
             # return HttpResponseRedirect('/thanks/')
     else:
         form = ContactForm()

@@ -1,18 +1,7 @@
 body {
     direction: rtl;
     text-align: right;
-    
-}
 
-
-/* Made with love by Mutiullah Samim*/
-
-@import url('https://fonts.googleapis.com/css?family=Numans');
-
-html, body {
-
-    height: 100%;
-    font-family: 'Numans', sans-serif;
 }
 
 .container {
@@ -75,12 +64,12 @@ input:focus {
 
 .login_btn {
     color: #000;
-    background-color: #fff!important;
+    background-color: #fff !important;
     width: 100px;
 }
 
 .login_btn:hover {
-    background-color: #FFC312!important;
+    background-color: #FFC312 !important;
 }
 
 .links {
