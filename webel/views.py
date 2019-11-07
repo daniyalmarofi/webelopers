@@ -34,20 +34,13 @@ def signup(request):
     return render(request, 'b_register.html', {'form': form})
 
 
+def login(request):
+
 def loginReq(request):
     return render(request, 'b_login.html')
 
 
 def contact(request):
-    sent = "nok"
+    form = ContactForm()
 
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            sent = "ok"
-            # return HttpResponseRedirect('/thanks/')
-        else:
-            form = ContactForm()
-
-    return render(request, 'contact.html', {'form': form, 'sent': sent})
+    return render(request, 'contact.html', {'form': form})

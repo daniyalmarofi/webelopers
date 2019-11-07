@@ -3,7 +3,7 @@
 {% block content %}
 
 
-    <form action="/register" method="POST" style="border:1px solid #ccc">
+    <form id="register_form" action="/register" method="POST" style="border:1px solid #ccc">
         {% csrf_token %}
         <div class="container">
             <h1>Sign Up</h1>
