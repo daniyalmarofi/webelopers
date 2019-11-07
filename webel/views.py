@@ -33,6 +33,9 @@ def sign_up(request):
 
 
 def signup(request):
+
+    message="nothing"
+
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         print(request.POST)
@@ -45,9 +48,10 @@ def signup(request):
             return redirect('home')
         else:
             print(form.errors)
+            message=form.errors
     else:
         form = SignUpForm()
-    return render(request, 'b_register.html', {'form': form})
+    return render(request, 'b_register.html', {'form': form,'message':message})
 
 
 def loginReq(request):

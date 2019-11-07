@@ -8,6 +8,18 @@
         <div class="container">
             <h1>ثبت نام</h1>
             <hr>
+
+            {% if message != 'nothing' %}
+
+                <div class="alert alert-danger" role="alert">
+
+                    {{ message }}
+
+                </div>
+
+
+            {% endif %}
+
             {{ form.as_table }}
             {#                        <label for="firstname"><b>First name</b></label>#}
             {#                        <br>#}
