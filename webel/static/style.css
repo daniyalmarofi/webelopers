@@ -52,8 +52,8 @@ html, body {
 
 .input-group-prepend span {
     width: 50px;
-    background-color: #FFC312;
-    color: black;
+    background-color: transparent;
+    color: #fff;
     border: 0 !important;
 }
 
@@ -75,14 +75,13 @@ input:focus {
 }
 
 .login_btn {
-    color: black;
-    background-color: #FFC312;
+    color: #000;
+    background-color: #fff!important;
     width: 100px;
 }
 
 .login_btn:hover {
-    color: black;
-    background-color: white;
+    background-color: #FFC312!important;
 }
 
 .links {
