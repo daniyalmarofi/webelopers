@@ -4,7 +4,7 @@
 
 
     <div class="container">
-        <div class="d-flex justify-content-center h-100">
+        <div class="d-flex justify-content-center">
             <div class="card">
                 <div class="card-header">
                     <h3>ورود</h3>
@@ -12,26 +12,20 @@
 
                 <div class="card-body">
 
-                         {% if message != 'nothing' %}
-                <div class="alert alert-danger" role="alert">
-
-                            {{ message }}
-                </div>
-                        {% endif %}
-
-
-
                     <form method="post" action="/login" id="login_form">
+
+                        {% if message != 'nothing' %}
+                            <div class="alert alert-danger" id="error" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endif %}
 
                         {% csrf_token %}
 
-                                          {{ form.as_p }}
+                        {{ form.as_p }}
 
 
-
-                        <div class="form-group">
-                            <input type="submit" value="ورود" class="btn float-right login_btn">
-                        </div>
+                        <input type="submit" value="ورود" class="btn float-right login_btn">
                     </form>
                 </div>
             </div>

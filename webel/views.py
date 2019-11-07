@@ -67,6 +67,8 @@ def login_view(request):
                 return redirect('/')
             else:
                 message = 'invalid'
+        else:
+            message='notvalid'
     else:
         form = LoginForm()
 
