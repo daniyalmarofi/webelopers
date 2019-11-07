@@ -1,5 +1,5 @@
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 import pip
@@ -19,7 +19,7 @@ except:
     import requests
 
 # Create your views here.
-from webel.forms import SignUpForm
+from webel.forms import SignUpForm, LoginForm
 
 from webel.forms import ContactForm
 
@@ -33,8 +33,7 @@ def sign_up(request):
 
 
 def signup(request):
-
-    message="nothing"
+    message = "nothing"
 
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -48,14 +47,30 @@ def signup(request):
             return redirect('home')
         else:
             print(form.errors)
-            message=form.errors
+            message = form.errors
     else:
         form = SignUpForm()
-    return render(request, 'b_register.html', {'form': form,'message':message})
+    return render(request, 'b_register.html', {'form': form, 'message': message})
 
 
-def loginReq(request):
-    return render(request, 'b_login.html')
+def login_view(request):
+    message = 'nothing'
+
+    if request.method == 'POST':
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+            else:
+                message = 'invalid'
+    else:
+        form = LoginForm()
+
+    return render(request, 'b_login.html', {'form': form, 'message': message})
 
 
 def contact(request):
