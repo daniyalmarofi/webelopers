@@ -2,11 +2,12 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
-
 # Create your views here.
+from webel.forms import ContactForm
+
+
 def index(request):
     return render(request, 'base.html')
-
 
 
 def sign_up(request):
@@ -27,5 +28,12 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
+
 def login(request):
     return render(request, 'b_login.html')
+
+
+def contact(request):
+    form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})
