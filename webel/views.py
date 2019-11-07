@@ -19,7 +19,7 @@ except:
     import requests
 
 # Create your views here.
-from webel.forms import SignUpForm, LoginForm
+from webel.forms import SignUpForm, LoginForm, EditProfile
 
 from webel.forms import ContactForm
 
@@ -117,5 +117,20 @@ def profile(request):
 
     return render(request, 'profile.html', {'profile': profile})
 
+
+@login_required(login_url='/login')
 def panel(request):
-    return render(request,'panel.html')
+    return render(request, 'panel.html')
+
+
+@login_required(login_url='/login')
+def setting(request):
+    if request.method == "POST":
+        form = EditProfile(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile')
+    else:
+        form = EditProfile(instance=request.user)
+
+    return render(request, 'setting.html', {'form': form})

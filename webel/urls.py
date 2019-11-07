@@ -11,4 +11,5 @@ urlpatterns = [
     path('contact', views.contact),
     path('profile', views.profile),
     path('panel', views.panel),
+    path('setting', views.setting),
 ]

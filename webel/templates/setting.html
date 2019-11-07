@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <form id="register_form" action="/setting" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <h1>ویرایش پروفایل</h1>
+            <hr>
+
+            {{ form }}
+
+
+            <button type="submit" class="signupbtn">ویرایش</button>
+
+        </div>
+    </form>
+
+{% endblock %}
