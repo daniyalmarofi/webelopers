@@ -116,13 +116,18 @@ def contact(request):
 def profile(request):
     username = request.user.username
     user = User.objects.get(username=username)
-    daniavatar = UserAvatar.objects.get(username=username)
-    print(daniavatar)
-    print(daniavatar.avatar)
+
+    try:
+        daniavatar=UserAvatar.objects.get(username=username)
+        urlfile=daniavatar.avatar
+    except:
+        urlfile='http://danihost.ir/da512.png'
+    # print(daniavatar)
+    # print(daniavatar.avatar)
     profile = {'username': user.username,
                'first_name': user.first_name,
                'last_name': user.last_name,
-               'avatarurl':daniavatar.avatar}
+               'avatarurl':urlfile}
 
     return render(request, 'profile.html', {'profile': profile})
 
