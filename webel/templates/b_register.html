@@ -10,22 +10,21 @@
             <hr>
 
             {% if message %}
-                    <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger" id="errors" role="alert">
 
-                {% if 'username' in message %}
+                    {% if 'username' in message %}
 
+                        <p>
+                            نام کاربری شما در سیستم موجود است
+                        </p>
+                    {% endif %}
+                    {% if 'password' in message %}
+                        <p>
+                            گذرواژه و تکرار گذرواژه یکسان نیستند
+                        </p>
 
-                        نام کاربری شما در سیستم موجود است
-
-                {% endif %}
-<br>
-                {% if 'password' in message %}
-
-                    گذرواژه و تکرار گذرواژه یکسان نیستند
-
-
-                {% endif %}
-</div>
+                    {% endif %}
+                </div>
             {% endif %}
 
 

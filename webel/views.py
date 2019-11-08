@@ -42,7 +42,7 @@ def signup(request):
             return redirect('/')
         else:
 
-            if 'match' in form.errors:
+            if 'password2' in form.errors:
                 message.append('password')
 
             if 'username' in form.errors:
