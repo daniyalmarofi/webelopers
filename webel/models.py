@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -12,11 +13,17 @@ class Contact(models.Model):
         return self.title
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.FileField()
+
+
 class Course(models.Model):
     department = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     group_number = models.IntegerField()
     course_number = models.IntegerField()
+
     teacher = models.CharField(max_length=50)
     start_time = models.CharField(max_length=20)
     end_time = models.CharField(max_length=20)
