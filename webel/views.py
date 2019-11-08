@@ -1,16 +1,19 @@
+from django.conf import settings
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.shortcuts import render, redirect
-# import requests
-from .models import Course, UserProfile
-from django.conf import settings
-
-# Create your views here.
-from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse, SearchCourse
+# Imaginary function to handle an uploaded file.
 
 from webel.forms import ContactForm
+# Create your views here.
+from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse, SearchCourse
+from .forms import UploadFileForm
+# import requests
+from .models import Course, UserProfile
 
 
 def index(request):
@@ -184,3 +187,20 @@ def courses(request):
         courses_data.append(course_data)
 
     return render(request, 'courses.html', {'courses': courses_data, 'form': form, 'search': search})
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return HttpResponseRedirect('/success/url/')
+    else:
+        form = UploadFileForm()
+    return render(request, 'upload.html', {'form': form})
+
+
+def handle_uploaded_file(f):
+    with open('some/file/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
