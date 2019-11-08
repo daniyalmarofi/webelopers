@@ -37,6 +37,7 @@ class LoginForm(AuthenticationForm):
 
 
 class EditProfile(ModelForm):
+    # file = forms.FileField()
 
     class Meta:
         model = User
@@ -53,12 +54,12 @@ class MakeCourse(ModelForm):
         model = Course
         fields = '__all__'
 
-
 class SearchCourse(forms.Form):
     search_query = forms.CharField(max_length=100)
     # department = forms.BooleanField(required=False)
     # teacher = forms.BooleanField(required=False)
     # course = forms.BooleanField(required=False)
+
 
 class MyCourse(forms.Form):
     pass
