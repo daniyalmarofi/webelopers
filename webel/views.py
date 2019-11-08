@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -13,7 +14,7 @@ from webel.forms import ContactForm, MyCourse
 from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse, SearchCourse
 
 # import requests
-from .models import Course
+from .models import Course, UserAvatar
 
 
 def index(request):

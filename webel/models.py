@@ -28,3 +28,8 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UserAvatar(models.Model):
+    username = models.CharField(max_length=100)
+    avatar = models.CharField(max_length=500)
