@@ -4,13 +4,13 @@
 
     <div class="container">
 
-        <form method="post" id="setting_form" action="/setting" method="POST">
+        <form method="post" id="setting_form" action="/setting" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <h1>ویرایش پروفایل</h1>
             <hr>
 
             {{ form }}
-            <input name="profile" type="file">عکس پروفایل
+            {#            <input name="profile" id="fileToUpload" type="file">عکس پروفایل#}
             <br>
             <button type="submit" class="signupbtn">ویرایش</button>
 

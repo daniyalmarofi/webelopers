@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.conf.global_settings import MEDIA_ROOT, MEDIA_URL
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -35,7 +37,6 @@ EMAIL_HOST_USER = 'daniyalwebel@gmail.com'
 EMAIL_HOST_PASSWORD = 'fdsdfkjhgf23456'
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -129,3 +130,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT
+MEDIA_URL

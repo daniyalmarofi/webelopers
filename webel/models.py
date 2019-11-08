@@ -15,7 +15,7 @@ class Contact(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.FileField()
+    avatar = models.FileField(upload_to="webel/static/uploads", null=True)
 
 
 class Course(models.Model):
