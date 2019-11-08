@@ -1,6 +1,6 @@
 from django.forms import ModelForm, TextInput, forms, Textarea
 
-from webel.models import Contact
+from webel.models import Contact, Course
 
 
 class ContactForm(ModelForm):
@@ -38,3 +38,12 @@ class EditProfile(ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name')
+
+
+class MakeCourse(ModelForm):
+    choices = [('0', 'شنبه'), ('1', 'یکشنبه'), ('2', 'دوشنبه'), ('3', 'سه شنبه'), ('4', 'چهارشنبه')]
+
+
+    class Meta:
+        model = Course
+        fields = '__all__'

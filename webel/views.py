@@ -19,7 +19,7 @@ except:
     import requests
 
 # Create your views here.
-from webel.forms import SignUpForm, LoginForm, EditProfile
+from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse
 
 from webel.forms import ContactForm
 
@@ -140,3 +140,17 @@ def setting(request):
         form = EditProfile(instance=request.user)
 
     return render(request, 'setting.html', {'form': form})
+
+
+@login_required(login_url='/login')
+def make_course(request):
+    if request.method == 'POST':
+        form = MakeCourse()
+        if form.is_valid():
+            form.save()
+        else:
+            print('form is not vaild')
+    else:
+        form = MakeCourse()
+
+    return render(request, 'makecourse.html', {'form': form})
