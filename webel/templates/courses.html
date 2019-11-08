@@ -13,7 +13,7 @@
 
 
 
-    <div id="all_courses" {% if search %}class="search_result" {% endif %}>
+    <div id="{% if search %}search_result{% else %}all_courses{% endif %}">
 
         {% for course in courses %}
 
