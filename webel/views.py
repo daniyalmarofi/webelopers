@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 import requests
+from .models import Course
 
 # Create your views here.
 from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse
@@ -79,12 +80,14 @@ def contact(request):
 
             subject = form.cleaned_data['title']
             message = form.cleaned_data['text']
+            email = form.cleaned_data['email']
 
             daniurl = "https://azmabepors.com/action/webel"
 
             postdata = {
                 'title': subject,
-                'text': message
+                'text': message,
+                'email': email
             }
 
             r = requests.post(daniurl, data=postdata)
@@ -141,6 +144,13 @@ def make_course(request):
 
     return render(request, 'makecourse.html', {'form': form})
 
+
 @login_required(login_url='/login')
 def courses(request):
-    return render(request,'courses.html')
+    courses_data = []
+    mycourses = Course.objects.all()
+    for course in mycourses:
+        course_data = {'course_number': course.course_number,
+                       }
+
+    return render(request, 'courses.html')
