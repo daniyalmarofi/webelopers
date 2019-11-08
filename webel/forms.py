@@ -61,4 +61,5 @@ class SearchCourse(forms.Form):
     # course = forms.BooleanField(required=False)
 
 class MyCourse(forms.Form):
+
     pass

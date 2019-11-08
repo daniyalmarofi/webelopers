@@ -215,6 +215,7 @@ def courses(request):
 def addToMyCourses(request):
     if request.method == 'POST':
         form = MyCourse(request.POST)
-
+        if form.is_valid():
+            pass
 
     return
