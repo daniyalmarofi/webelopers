@@ -182,6 +182,7 @@ def courses(request):
 
     else:
         form = SearchCourse()
+
         mycourses = Course.objects.all()
 
     for course in mycourses:
