@@ -62,4 +62,5 @@ class SearchCourse(forms.Form):
 
 
 class MyCourse(forms.Form):
+
     pass
