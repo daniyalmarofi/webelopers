@@ -204,7 +204,9 @@ def courses(request):
                            'department': course.department,
                            'days': {'first': days[course.first_day], 'second': days[course.second_day]},
                            'times': {'start': course.start_time, 'end': course.end_time},
-                           'teacher': course.teacher}
+                           'teacher': course.teacher,
+                           'course_id': course.id
+                           }
             courses_data.append(course_data)
 
     return render(request, 'courses.html',
@@ -213,9 +215,10 @@ def courses(request):
 
 @login_required(login_url='/login')
 def addToMyCourses(request):
-    if request.method == 'POST':
-        form = MyCourse(request.POST)
-        if form.is_valid():
-            pass
+    courses_data = []
 
-    return
+    form = MakeCourse(request.GET)
+    if form.is_valid():
+        courses_data.append()
+    return render(request, 'courses.html',
+                  {'my_courses': courses_data, 'form': form})
