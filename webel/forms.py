@@ -60,3 +60,5 @@ class SearchCourse(forms.Form):
     # teacher = forms.BooleanField(required=False)
     # course = forms.BooleanField(required=False)
 
+class MyCourse(forms.Form):
+    pass
