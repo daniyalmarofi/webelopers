@@ -142,6 +142,14 @@ def setting(request):
     if request.method == "POST":
         form = EditProfile(request.POST, instance=request.user)
         if form.is_valid():
+            uploaded_file = request.FILES['document']
+            fs = FileSystemStorage()
+            filename = fs.save(uploaded_file.name, uploaded_file)
+            fileurl = fs.url(filename)
+            username = request.user.username
+            UserAvatar(username=username, avatar=fileurl).save()
+
+
             form.save()
             return redirect('/profile')
     else:
