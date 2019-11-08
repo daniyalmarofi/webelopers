@@ -118,16 +118,16 @@ def profile(request):
     user = User.objects.get(username=username)
 
     try:
-        daniavatar=UserAvatar.objects.get(username=username)
-        urlfile=daniavatar.avatar
+        daniavatar = UserAvatar.objects.get(username=username)
+        urlfile = daniavatar.avatar
     except:
-        urlfile='http://danihost.ir/da512.png'
+        urlfile = 'http://danihost.ir/da512.png'
     # print(daniavatar)
     # print(daniavatar.avatar)
     profile = {'username': user.username,
                'first_name': user.first_name,
                'last_name': user.last_name,
-               'avatarurl':urlfile}
+               'avatarurl': urlfile}
 
     return render(request, 'profile.html', {'profile': profile})
 
@@ -142,13 +142,13 @@ def setting(request):
     if request.method == "POST":
         form = EditProfile(request.POST, instance=request.user)
         if form.is_valid():
-            uploaded_file = request.FILES['document']
-            fs = FileSystemStorage()
-            filename = fs.save(uploaded_file.name, uploaded_file)
-            fileurl = fs.url(filename)
-            username = request.user.username
-            UserAvatar(username=username, avatar=fileurl).save()
-
+            if request.FILES:
+                uploaded_file = request.FILES['document']
+                fs = FileSystemStorage()
+                filename = fs.save(uploaded_file.name, uploaded_file)
+                fileurl = fs.url(filename)
+                username = request.user.username
+                UserAvatar(username=username, avatar=fileurl).save()
 
             form.save()
             return redirect('/profile')
