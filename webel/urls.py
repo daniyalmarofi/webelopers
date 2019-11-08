@@ -13,4 +13,5 @@ urlpatterns = [
     path('panel', views.panel),
     path('setting', views.setting),
     path('makecourse', views.make_course),
+    path('courses', views.courses),
 ]

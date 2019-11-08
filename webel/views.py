@@ -140,3 +140,7 @@ def make_course(request):
         form = MakeCourse()
 
     return render(request, 'makecourse.html', {'form': form})
+
+@login_required(login_url='/login')
+def courses(request):
+    return render(request,'courses.html')
