@@ -150,13 +150,15 @@ def courses(request):
     courses_data = []
     mycourses = Course.objects.all()
     for course in mycourses:
+        days=['شنبه','یکشنبه','دوشنبه','سه شنبه', 'چهارشنبه']
+
         course_data = {'course_number': course.course_number,
                        'group_number': course.group_number,
                        'course_name': course.name,
                        'department': course.department,
-                       'days': [course.first_day, course.second_day],
-                       'times': [course.start_time, course.end_time],
-                       'teacher': [course.teacher]}
+                       'days': {'first': days[course.first_day], 'second': days[course.second_day]},
+                       'times': {'start': course.start_time, 'end': course.end_time},
+                       'teacher': course.teacher}
         courses_data.append(course_data)
 
-    return render(request, 'courses.html',{'courses':courses_data})
+    return render(request, 'courses.html', {'courses': courses_data})
