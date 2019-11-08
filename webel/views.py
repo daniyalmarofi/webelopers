@@ -193,9 +193,9 @@ def courses(request):
     else:
         form = SearchCourse()
 
-        mycourses = Course.objects.all()
+        allCourses = Course.objects.all()
 
-        for course in mycourses:
+        for course in allCourses:
             days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه']
 
             course_data = {'course_number': course.course_number,
