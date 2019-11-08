@@ -42,7 +42,8 @@ class EditProfile(ModelForm):
 
 class MakeCourse(ModelForm):
     choices = [('0', 'شنبه'), ('1', 'یکشنبه'), ('2', 'دوشنبه'), ('3', 'سه شنبه'), ('4', 'چهارشنبه')]
-
+    first_day = forms.ChoiceField(choices=choices)
+    second_day = forms.ChoiceField(choices=choices)
 
     class Meta:
         model = Course
