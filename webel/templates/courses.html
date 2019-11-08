@@ -5,7 +5,7 @@
 
 
     <form id="search_form" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         {{ form }}
         <button name="submit">Search</button>
 
@@ -18,11 +18,13 @@
         {% for course in courses %}
 
             <div class="{{ course.course_number }}_{{ course.group_number }}">
-                <h4>{{ course.name }}</h4>
+
+                <h4>{{ course.course_name }}</h4>
                 <div>دانشکده: {{ course.department }}</div>
                 <div>روز: {{ course.days.first }} و {{ course.days.second }}</div>
                 <div>زمان: {{ course.times.start }} تا {{ course.times.end }}</div>
                 <div>نام استاد: {{ course.teacher }}</div>
+
             </div>
 
         {% endfor %}
