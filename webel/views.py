@@ -188,11 +188,19 @@ def courses(request):
 
     return render(request, 'courses.html', {'courses': courses_data, 'form': form, 'search': search})
 
+@login_required(login_url='/login')
+def addToMyCourses(request):
+    # do sth!!!!!
+    return
+
+
+
 
 def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
+            form.save()
             handle_uploaded_file(request.FILES['file'])
             return HttpResponseRedirect('/success/url/')
     else:
