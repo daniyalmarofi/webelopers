@@ -4,23 +4,9 @@
 
 
 
-    <form id="search_form">
-        <label>
-            <input name="search_query" type="text" placeholder="...Search">
-
-        </label>
-        <label>
-            <input name="department" type="text" placeholder="دانشکده">
-
-        </label>
-        <label>
-            <input name="teacher" type="text" placeholder="استاد">
-
-        </label>
-        <label>
-            <input name="course" type="text" placeholder="درس">
-        </label>
-
+    <form id="search_form" method="post">
+    {% csrf_token %}
+        {{ form }}
         <button name="submit">Search</button>
 
     </form>
@@ -33,17 +19,17 @@
 
     <div id="all_courses">
 
-    {% for course in courses %}
+        {% for course in courses %}
 
-        <div class="{{ course.course_number }}_{{ course.group_number }}">
-        <h4>{{ course.name }}</h4>
-        <div>دانشکده: {{ course.department }}</div>
-        <div>روز: {{ course.days.first }} و {{ course.days.second }}</div>
-        <div>زمان: {{ course.times.start }} تا {{ course.times.end }}</div>
-        <div>نام استاد: {{ course.teacher }}</div>
-        </div>
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <h4>{{ course.name }}</h4>
+                <div>دانشکده: {{ course.department }}</div>
+                <div>روز: {{ course.days.first }} و {{ course.days.second }}</div>
+                <div>زمان: {{ course.times.start }} تا {{ course.times.end }}</div>
+                <div>نام استاد: {{ course.teacher }}</div>
+            </div>
 
-    {% endfor %}
+        {% endfor %}
 
     </div>
 

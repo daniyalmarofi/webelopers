@@ -44,7 +44,12 @@ class MakeCourse(ModelForm):
     choices = [('0', 'شنبه'), ('1', 'یکشنبه'), ('2', 'دوشنبه'), ('3', 'سه شنبه'), ('4', 'چهارشنبه')]
     first_day = forms.ChoiceField(choices=choices)
     second_day = forms.ChoiceField(choices=choices)
+
     # time = forms.TimeField()
     class Meta:
         model = Course
         fields = '__all__'
+
+
+class SearchCourse(forms.Form):
+    searchdept = forms.CharField(max_length=100)
