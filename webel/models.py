@@ -12,12 +12,6 @@ class Contact(models.Model):
     def __str__(self):
         return self.title
 
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.FileField(upload_to="webel/static/uploads", null=True)
-
-
 class Course(models.Model):
     department = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
