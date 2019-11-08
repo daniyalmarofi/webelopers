@@ -53,4 +53,4 @@ class MakeCourse(ModelForm):
 
 
 class SearchCourse(forms.Form):
-    searchdept = forms.CharField(max_length=100)
+    search_query = forms.CharField(max_length=100)

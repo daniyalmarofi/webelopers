@@ -155,22 +155,21 @@ def make_course(request):
 @login_required(login_url='/login')
 def courses(request):
     courses_data = []
-    search=False
+    search = False
 
     if request.method == 'POST':
         # do sth
-        search=True
+        search = True
         form = SearchCourse(request.POST)
         if form.is_valid():
-            dept = form.cleaned_data['searchdept']
-            mycourses=Course.objects.all().filter(department=dept)
+            dept = form.cleaned_data['search_query']
+            mycourses = Course.objects.all().filter(department=dept)
         else:
             print('not vaild')
 
     else:
         form = SearchCourse()
         mycourses = Course.objects.all()
-
 
     for course in mycourses:
         days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه']
@@ -184,4 +183,4 @@ def courses(request):
                        'teacher': course.teacher}
         courses_data.append(course_data)
 
-    return render(request, 'courses.html', {'courses': courses_data,'form':form,'search':search})
+    return render(request, 'courses.html', {'courses': courses_data, 'form': form, 'search': search})
