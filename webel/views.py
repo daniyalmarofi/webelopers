@@ -167,23 +167,16 @@ def courses(request):
         form = SearchCourse(request.POST)
         if form.is_valid():
 
-            searchcourse=[]
-
-            danifalt=True
-
+            # dept=True
             search_query = form.cleaned_data['search_query']
-            if form.cleaned_data['department']:
-                asdept=Course.objects.all().filter(department=search_query)
-                danifalt=False
-            if form.cleaned_data['teacher']:
-                asteacher=Course.objects.all().filter(teacher=search_query)
-                danifalt=False
-            if form.cleaned_data['course']:
-                ascourse=Course.objects.all().filter(name=search_query)
-                danifalt=False
-
-            if danifalt:
-                searchcourse = Course.objects.all().filter(department=search_query)
+            # if form.cleaned_data['department']:
+            #     asdept=Course.objects.all().filter(department=search_query)
+            # elif form.cleaned_data['teacher']:
+            #     asteacher=Course.objects.all().filter(teacher=search_query)
+            # elif form.cleaned_data['course']:
+            #     ascourse=Course.objects.all().filter(name=search_query)
+            # else:
+            searchcourse = Course.objects.all().filter(department=search_query)
 
             for crs in searchcourse:
                 searchedcourses.append({'course_number': crs.course_number,
