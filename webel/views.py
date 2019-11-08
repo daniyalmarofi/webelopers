@@ -27,8 +27,8 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            profile = form.cleaned_data.get('profile')
-            UserProfile.objects.create(user, profile)
+            # profile = form.cleaned_data.get('profile')
+            # UserProfile.objects.create(user, profile)
             login(request, user)
             return redirect('/')
         else:
