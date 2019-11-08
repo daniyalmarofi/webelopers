@@ -22,10 +22,11 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.<br>')
+    profile = forms.FileField()
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
+        fields = ('username', 'first_name', 'last_name', 'email', 'profile', 'password1', 'password2',)
 
 
 class LoginForm(AuthenticationForm):
@@ -44,6 +45,7 @@ class MakeCourse(ModelForm):
     choices = [('0', 'شنبه'), ('1', 'یکشنبه'), ('2', 'دوشنبه'), ('3', 'سه شنبه'), ('4', 'چهارشنبه')]
     first_day = forms.ChoiceField(choices=choices)
     second_day = forms.ChoiceField(choices=choices)
+
     # time = forms.TimeField()
     class Meta:
         model = Course

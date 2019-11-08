@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 # import requests
-from .models import Course
+from .models import Course, UserProfile
 from django.conf import settings
 
 # Create your views here.
@@ -27,6 +27,8 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
+            profile = form.cleaned_data.get('profile')
+            UserProfile.objects.create(user, profile)
             login(request, user)
             return redirect('/')
         else:
