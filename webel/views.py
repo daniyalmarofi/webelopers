@@ -1,9 +1,11 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-import requests
+# import requests
 from .models import Course
+from django.conf import settings
 
 # Create your views here.
 from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse
@@ -79,18 +81,21 @@ def contact(request):
             form.save()
 
             subject = form.cleaned_data['title']
-            message = form.cleaned_data['text']
             email = form.cleaned_data['email']
+            message = form.cleaned_data['text'] + '\n' + email
+            recipient_list = ['marofidaniyal@gmail.com', 'webe19lopers@gmail.com']
 
-            daniurl = "https://azmabepors.com/action/webel"
+            send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list)
 
-            postdata = {
-                'title': subject,
-                'text': message,
-                'email': email
-            }
-
-            r = requests.post(daniurl, data=postdata)
+            # daniurl = "https://azmabepors.com/action/webel"
+            #
+            # postdata = {
+            #     'title': subject,
+            #     'text': message,
+            #     'email': email
+            # }
+            #
+            # r = requests.post(daniurl, data=postdata)
 
             sent = True
 
@@ -150,7 +155,7 @@ def courses(request):
     courses_data = []
     mycourses = Course.objects.all()
     for course in mycourses:
-        days=['شنبه','یکشنبه','دوشنبه','سه شنبه', 'چهارشنبه']
+        days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه']
 
         course_data = {'course_number': course.course_number,
                        'group_number': course.group_number,
