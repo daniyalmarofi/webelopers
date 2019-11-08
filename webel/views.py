@@ -151,6 +151,9 @@ def courses(request):
     mycourses = Course.objects.all()
     for course in mycourses:
         course_data = {'course_number': course.course_number,
-                       }
+                       'group_number':course.group_number,
+                       'course_name':course.name,
+                       'department':course.department,
+                       'days':[course.first_day,course.second_day],}
 
     return render(request, 'courses.html')
