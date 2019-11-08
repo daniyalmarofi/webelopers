@@ -118,7 +118,7 @@ def profile(request):
     user = User.objects.get(username=username)
 
     try:
-        daniavatar = UserAvatar.objects.get(username=username)
+        daniavatar = UserAvatar.objects.filter(username=username).last()
         urlfile = daniavatar.avatar
     except:
         urlfile = 'http://danihost.ir/da512.png'
