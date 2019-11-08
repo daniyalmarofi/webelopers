@@ -214,6 +214,7 @@ def courses(request):
 @login_required(login_url='/login')
 def addToMyCourses(request):
     if request.method == 'POST':
-        form = MyCourse(request.POST):
+        form = MyCourse(request.POST)
+
 
     return
