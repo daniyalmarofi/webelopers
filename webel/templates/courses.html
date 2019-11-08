@@ -3,6 +3,34 @@
 {% block content %}
 
 
+
+    <form id="search_form">
+        <label>
+            <input name="search_query" type="text" placeholder="...Search">
+
+        </label>
+        <label>
+            <input name="department" type="text" placeholder="دانشکده">
+
+        </label>
+        <label>
+            <input name="teacher" type="text" placeholder="استاد">
+
+        </label>
+        <label>
+            <input name="course" type="text" placeholder="درس">
+        </label>
+
+        <button name="submit">Search</button>
+
+    </form>
+
+    <div id="search_results">نتایج جستجو
+
+    </div>
+
+
+
     <div id="all_courses">
 
     {% for course in courses %}
