@@ -158,6 +158,7 @@ def make_course(request):
 @login_required(login_url='/login')
 def courses(request):
     courses_data = []
+    searchedcourses = []
     search = False
 
     if request.method == 'POST':
@@ -165,28 +166,56 @@ def courses(request):
         search = True
         form = SearchCourse(request.POST)
         if form.is_valid():
-            dept = form.cleaned_data['search_query']
-            mycourses = Course.objects.all().filter(department=dept)
+
+            searchcourse=[]
+
+            danifalt=True
+
+            search_query = form.cleaned_data['search_query']
+            if form.cleaned_data['department']:
+                asdept=Course.objects.all().filter(department=search_query)
+                danifalt=False
+            if form.cleaned_data['teacher']:
+                asteacher=Course.objects.all().filter(teacher=search_query)
+                danifalt=False
+            if form.cleaned_data['course']:
+                ascourse=Course.objects.all().filter(name=search_query)
+                danifalt=False
+
+            if danifalt:
+                searchcourse = Course.objects.all().filter(department=search_query)
+
+            for crs in searchcourse:
+                searchedcourses.append({'course_number': crs.course_number,
+                                        'group_number': crs.group_number,
+                                        'course_name': crs.name,
+                                        'department': crs.department,
+                                        'times': {'start': crs.start_time, 'end': crs.end_time},
+                                        'teacher': crs.teacher})
+
+
         else:
             print('not vaild')
 
     else:
         form = SearchCourse()
+
         mycourses = Course.objects.all()
 
-    for course in mycourses:
-        days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه']
+        for course in mycourses:
+            days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه']
 
-        course_data = {'course_number': course.course_number,
-                       'group_number': course.group_number,
-                       'course_name': course.name,
-                       'department': course.department,
-                       'days': {'first': days[course.first_day], 'second': days[course.second_day]},
-                       'times': {'start': course.start_time, 'end': course.end_time},
-                       'teacher': course.teacher}
-        courses_data.append(course_data)
+            course_data = {'course_number': course.course_number,
+                           'group_number': course.group_number,
+                           'course_name': course.name,
+                           'department': course.department,
+                           'days': {'first': days[course.first_day], 'second': days[course.second_day]},
+                           'times': {'start': course.start_time, 'end': course.end_time},
+                           'teacher': course.teacher}
+            courses_data.append(course_data)
 
-    return render(request, 'courses.html', {'courses': courses_data, 'form': form, 'search': search})
+    return render(request, 'courses.html',
+                  {'courses': courses_data, 'form': form, 'search': search, 'seachedcourses': searchedcourses})
 
 @login_required(login_url='/login')
 def addToMyCourses(request):
