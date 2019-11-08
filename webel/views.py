@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 # Imaginary function to handle an uploaded file.
 
-from webel.forms import ContactForm
+from webel.forms import ContactForm, MyCourse
 # Create your views here.
 from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse, SearchCourse
 from .forms import UploadFileForm
@@ -213,7 +213,9 @@ def courses(request):
 
 @login_required(login_url='/login')
 def addToMyCourses(request):
-    # do sth!!!!!
+    if request.method == 'POST':
+        form = MyCourse(request.POST):
+
     return
 
 
