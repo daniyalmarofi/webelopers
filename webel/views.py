@@ -2,21 +2,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-import pip
-
-
-def daninstall(package):
-    if hasattr(pip, 'main'):
-        pip.main(['install', package])
-    else:
-        pip._internal.main(['install', package])
-
-
-try:
-    import requests
-except:
-    daninstall(requests)
-    import requests
+import requests
 
 # Create your views here.
 from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse
@@ -145,7 +131,7 @@ def setting(request):
 @login_required(login_url='/login')
 def make_course(request):
     if request.method == 'POST':
-        form = MakeCourse()
+        form = MakeCourse(request.POST)
         if form.is_valid():
             form.save()
         else:
