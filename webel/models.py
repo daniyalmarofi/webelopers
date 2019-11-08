@@ -22,7 +22,7 @@ class Course(models.Model):
     teacher = models.CharField(max_length=50)
     start_time = models.CharField(max_length=20)
     end_time = models.CharField(max_length=20)
-    exam_time = models.CharField(max_length=20)
+    exam_date = models.CharField(max_length=20)
     first_day = models.IntegerField()
     second_day = models.IntegerField()
 
