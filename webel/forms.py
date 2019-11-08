@@ -50,3 +50,7 @@ class MakeCourse(ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
+
+
+class SearchCourse(forms.Form):
+    searchdept = forms.CharField(max_length=100)

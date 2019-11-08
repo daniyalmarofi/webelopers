@@ -8,7 +8,7 @@ from .models import Course, UserProfile
 from django.conf import settings
 
 # Create your views here.
-from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse
+from webel.forms import SignUpForm, LoginForm, EditProfile, MakeCourse, SearchCourse
 
 from webel.forms import ContactForm
 
@@ -155,7 +155,21 @@ def make_course(request):
 @login_required(login_url='/login')
 def courses(request):
     courses_data = []
-    mycourses = Course.objects.all()
+
+    if request.method == 'POST':
+        # do sth
+        form = SearchCourse(request.POST)
+        if form.is_valid():
+            dept = form.cleaned_data['searchdept']
+            mycourses=Course.objects.all().filter(department=dept)
+        else:
+            print('not vaild')
+
+    else:
+        form = SearchCourse()
+        mycourses = Course.objects.all()
+
+
     for course in mycourses:
         days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه']
 
@@ -168,4 +182,4 @@ def courses(request):
                        'teacher': course.teacher}
         courses_data.append(course_data)
 
-    return render(request, 'courses.html', {'courses': courses_data})
+    return render(request, 'courses.html', {'courses': courses_data,'form':form})
