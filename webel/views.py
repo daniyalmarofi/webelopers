@@ -153,9 +153,11 @@ def make_course(request):
 @login_required(login_url='/login')
 def courses(request):
     courses_data = []
+    search=False
 
     if request.method == 'POST':
         # do sth
+        search=True
         form = SearchCourse(request.POST)
         if form.is_valid():
             dept = form.cleaned_data['searchdept']
@@ -180,4 +182,4 @@ def courses(request):
                        'teacher': course.teacher}
         courses_data.append(course_data)
 
-    return render(request, 'courses.html', {'courses': courses_data,'form':form})
+    return render(request, 'courses.html', {'courses': courses_data,'form':form,'search':search})

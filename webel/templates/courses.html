@@ -11,13 +11,9 @@
 
     </form>
 
-    <div id="search_results">نتایج جستجو
-
-    </div>
 
 
-
-    <div id="all_courses">
+    <div id="all_courses" {% if search %}class="search_result" {% endif %}>
 
         {% for course in courses %}
 
