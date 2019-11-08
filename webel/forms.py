@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, TextInput, forms, Textarea
 
-from webel.models import Contact, Course
+from webel.models import Contact, Course, UserProfile
 from django import forms
 
 class UploadFileForm(forms.Form):

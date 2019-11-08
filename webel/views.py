@@ -167,20 +167,20 @@ def courses(request):
         form = SearchCourse(request.POST)
         if form.is_valid():
 
-            searchcourse=[]
+            searchcourse = []
 
-            danifalt=True
+            danifalt = True
 
             search_query = form.cleaned_data['search_query']
             if form.cleaned_data['department']:
-                asdept=Course.objects.all().filter(department=search_query)
-                danifalt=False
+                asdept = Course.objects.all().filter(department=search_query)
+                danifalt = False
             if form.cleaned_data['teacher']:
-                asteacher=Course.objects.all().filter(teacher=search_query)
-                danifalt=False
+                asteacher = Course.objects.all().filter(teacher=search_query)
+                danifalt = False
             if form.cleaned_data['course']:
-                ascourse=Course.objects.all().filter(name=search_query)
-                danifalt=False
+                ascourse = Course.objects.all().filter(name=search_query)
+                danifalt = False
 
             if danifalt:
                 searchcourse = Course.objects.all().filter(department=search_query)
@@ -217,12 +217,11 @@ def courses(request):
     return render(request, 'courses.html',
                   {'courses': courses_data, 'form': form, 'search': search, 'seachedcourses': searchedcourses})
 
+
 @login_required(login_url='/login')
 def addToMyCourses(request):
     # do sth!!!!!
     return
-
-
 
 
 def upload_file(request):
