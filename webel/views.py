@@ -162,8 +162,17 @@ def courses(request):
         search = True
         form = SearchCourse(request.POST)
         if form.is_valid():
-            dept = form.cleaned_data['search_query']
-            mycourses = Course.objects.all().filter(department=dept)
+
+            dept=True
+            search_query = form.cleaned_data['search_query']
+            if form.cleaned_data['department']:
+                asdept=Course.objects.all().filter(department=search_query)
+            elif form.cleaned_data['teacher']:
+                asteacher=Course.objects.all().filter(teacher=search_query)
+            elif form.cleaned_data['course']:
+                ascourse=Course.objects.all().filter(name=search_query)
+            else:
+                mycourses = Course.objects.all().filter(department=search_query)
         else:
             print('not vaild')
 
