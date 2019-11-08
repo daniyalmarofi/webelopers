@@ -1,13 +1,6 @@
-from django import forms
-from django.forms import ModelForm, TextInput, forms, Textarea
+from django.forms import ModelForm, TextInput, Textarea
 
-from webel.models import Contact, Course, UserProfile
-from django import forms
-
-class UploadFileForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    file = forms.FileField()
-
+from webel.models import Contact, Course
 
 
 class ContactForm(ModelForm):
@@ -45,10 +38,9 @@ class LoginForm(AuthenticationForm):
 
 class EditProfile(ModelForm):
 
-    profile = forms.FileField()
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'profile')
+        fields = ('first_name', 'last_name')
 
 
 class MakeCourse(ModelForm):
